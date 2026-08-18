@@ -8,7 +8,7 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 
 <!-- END:nextjs-agent-rules -->
 
-# Roccola App
+# RoccolAPP
 
 Private shared web app for a couple: monthly calendar, shopping list, to-do list, and
 future shared tabs. Deployed on Vercel, source on GitHub, data in Firebase (Auth +

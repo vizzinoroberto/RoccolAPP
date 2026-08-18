@@ -14,7 +14,7 @@ export default function NavTabs() {
   return (
     <header className="sticky top-0 z-10 border-b border-neutral-200 bg-white/90 backdrop-blur dark:border-neutral-800 dark:bg-neutral-950/90">
       <div className="mx-auto flex max-w-3xl items-center justify-between px-4 py-3">
-        <span className="text-lg font-semibold tracking-tight">Roccola</span>
+        <span className="text-lg font-semibold tracking-tight">RoccolAPP</span>
         {user && (
           <button
             onClick={() => logout()}

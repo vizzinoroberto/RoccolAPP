@@ -36,7 +36,7 @@ export default function LoginPage() {
         onSubmit={handleSubmit}
         className="w-full max-w-sm rounded-2xl border border-neutral-200 p-6 dark:border-neutral-800"
       >
-        <h1 className="mb-1 text-xl font-semibold">Roccola</h1>
+        <h1 className="mb-1 text-xl font-semibold">RoccolAPP</h1>
         <p className="mb-6 text-sm text-neutral-500">Accedi per continuare</p>
 
         <label className="mb-3 block text-sm">

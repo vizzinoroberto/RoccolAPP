@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Roccola",
+  title: "RoccolAPP",
   description: "Calendario, spesa e to-do condivisi",
 };
 

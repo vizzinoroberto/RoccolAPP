@@ -1,4 +1,4 @@
-# Roccola
+# RoccolAPP
 
 App condivisa per calendario, lista della spesa e to-do list, ad uso privato di due
 persone. Next.js su Vercel, dati su Firebase (Auth + Firestore).
