@@ -13,28 +13,25 @@ export default function NavTabs() {
   if (pathname === "/login") return null;
 
   return (
-    <header className="sticky top-0 z-10 border-b border-neutral-200 bg-white/90 backdrop-blur dark:border-neutral-800 dark:bg-neutral-950/90">
-      <div className="relative h-20 w-full overflow-hidden sm:h-32">
-        <Image
-          src="/illustrations/house-lineart-banner.png"
-          alt=""
-          fill
-          aria-hidden
-          className="pointer-events-none select-none object-cover object-center opacity-25 dark:opacity-20 dark:invert"
-        />
-      </div>
-      <div className="mx-auto flex max-w-3xl items-center justify-between px-4 py-3">
-        <span className="text-lg font-semibold tracking-tight">RoccolAPP</span>
-        {user && (
+    <header className="sticky top-0 z-10 relative overflow-hidden border-b border-neutral-200 bg-white/90 backdrop-blur dark:border-neutral-800 dark:bg-neutral-950/90">
+      <Image
+        src="/illustrations/house-lineart-banner.png"
+        alt=""
+        fill
+        aria-hidden
+        className="pointer-events-none select-none object-cover object-center opacity-25 dark:opacity-20 dark:invert"
+      />
+      {user && (
+        <div className="relative mx-auto flex max-w-3xl justify-end px-4 pt-3">
           <button
             onClick={() => logout()}
             className="text-xs text-neutral-500 hover:text-neutral-800 dark:hover:text-neutral-200"
           >
             Esci ({user.email})
           </button>
-        )}
-      </div>
-      <nav className="mx-auto flex max-w-3xl gap-1 overflow-x-auto px-4 pb-2">
+        </div>
+      )}
+      <nav className="relative mx-auto flex max-w-3xl gap-1 overflow-x-auto px-4 pb-3 pt-3">
         {NAV_ITEMS.map((item) => {
           const active = pathname === item.href;
           return (
