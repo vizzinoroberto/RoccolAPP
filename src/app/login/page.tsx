@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useAuth } from "@/lib/auth-context";
 
@@ -31,10 +32,19 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="flex min-h-[80vh] items-center justify-center px-4">
+    <div className="relative flex min-h-screen items-center justify-center overflow-hidden px-4">
+      <Image
+        src="/illustrations/house-lineart.png"
+        alt=""
+        fill
+        priority
+        aria-hidden
+        className="pointer-events-none select-none object-cover object-bottom opacity-90 dark:opacity-70 dark:invert"
+      />
+
       <form
         onSubmit={handleSubmit}
-        className="w-full max-w-sm rounded-2xl border border-neutral-200 p-6 dark:border-neutral-800"
+        className="relative z-10 w-full max-w-sm rounded-2xl border border-neutral-200 bg-white/85 p-6 shadow-sm backdrop-blur-sm dark:border-neutral-800 dark:bg-neutral-950/85"
       >
         <h1 className="mb-1 text-xl font-semibold">RoccolAPP</h1>
         <p className="mb-6 text-sm text-neutral-500">Accedi per continuare</p>

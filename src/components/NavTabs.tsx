@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { NAV_ITEMS } from "@/lib/nav-items";
@@ -13,6 +14,15 @@ export default function NavTabs() {
 
   return (
     <header className="sticky top-0 z-10 border-b border-neutral-200 bg-white/90 backdrop-blur dark:border-neutral-800 dark:bg-neutral-950/90">
+      <div className="relative h-16 w-full overflow-hidden sm:h-20">
+        <Image
+          src="/illustrations/house-lineart.png"
+          alt=""
+          fill
+          aria-hidden
+          className="pointer-events-none select-none object-cover object-bottom opacity-25 dark:opacity-20 dark:invert"
+        />
+      </div>
       <div className="mx-auto flex max-w-3xl items-center justify-between px-4 py-3">
         <span className="text-lg font-semibold tracking-tight">RoccolAPP</span>
         {user && (
