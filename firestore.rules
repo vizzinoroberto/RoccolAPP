@@ -1,0 +1,11 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Only the two signed-in household accounts can read/write.
+    // There is no per-user isolation: all shared data is visible to both.
+    match /{document=**} {
+      allow read, write: if request.auth != null;
+    }
+  }
+}
