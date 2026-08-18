@@ -73,11 +73,12 @@ export default function SharedList({
           onChange={(e) => setText(e.target.value)}
           onKeyDown={(e) => e.key === "Enter" && addItem()}
           placeholder={placeholder}
-          className="flex-1 rounded-lg border border-neutral-200 px-3 py-2 text-sm dark:border-neutral-800 dark:bg-neutral-900"
+          enterKeyHint="done"
+          className="flex-1 rounded-lg border border-neutral-200 px-3 py-3 text-sm dark:border-neutral-800 dark:bg-neutral-900"
         />
         <button
           onClick={addItem}
-          className="rounded-lg bg-neutral-900 px-4 py-2 text-sm font-medium text-white dark:bg-white dark:text-neutral-900"
+          className="shrink-0 rounded-lg bg-neutral-900 px-4 py-3 text-sm font-medium text-white dark:bg-white dark:text-neutral-900"
         >
           Aggiungi
         </button>
@@ -119,23 +120,25 @@ function ListRow({
   onRemove: (id: string) => void;
 }) {
   return (
-    <li className="flex items-center gap-3 rounded-lg border border-neutral-200 px-3 py-2 dark:border-neutral-800">
-      <input
-        type="checkbox"
-        checked={item.done}
-        onChange={() => onToggle(item)}
-        className="h-4 w-4 accent-neutral-900 dark:accent-white"
-      />
-      <span
-        className={`flex-1 text-sm ${
-          item.done ? "text-neutral-400 line-through" : ""
-        }`}
-      >
-        {item.text}
-      </span>
+    <li className="flex items-center gap-2 rounded-lg border border-neutral-200 pl-1 pr-2 dark:border-neutral-800">
+      <label className="flex flex-1 cursor-pointer items-center gap-3 py-3 pl-2">
+        <input
+          type="checkbox"
+          checked={item.done}
+          onChange={() => onToggle(item)}
+          className="h-5 w-5 shrink-0 accent-neutral-900 dark:accent-white"
+        />
+        <span
+          className={`flex-1 text-sm ${
+            item.done ? "text-neutral-400 line-through" : ""
+          }`}
+        >
+          {item.text}
+        </span>
+      </label>
       <button
         onClick={() => onRemove(item.id)}
-        className="text-neutral-400 hover:text-red-500"
+        className="shrink-0 p-3 text-neutral-400 hover:text-red-500"
         aria-label="Elimina"
       >
         ✕

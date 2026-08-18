@@ -13,7 +13,7 @@ export default function NavTabs() {
   if (pathname === "/login") return null;
 
   return (
-    <header className="sticky top-0 z-10 relative overflow-hidden border-b border-neutral-200 bg-white/90 backdrop-blur dark:border-neutral-800 dark:bg-neutral-950/90">
+    <header className="sticky top-0 z-10 relative overflow-hidden border-b border-neutral-200 bg-white/90 pt-[env(safe-area-inset-top)] backdrop-blur dark:border-neutral-800 dark:bg-neutral-950/90">
       <Image
         src="/illustrations/house-lineart-banner.png"
         alt=""
@@ -25,7 +25,7 @@ export default function NavTabs() {
         <div className="relative mx-auto flex max-w-3xl justify-end px-4 pt-3">
           <button
             onClick={() => logout()}
-            className="text-xs text-neutral-500 hover:text-neutral-800 dark:hover:text-neutral-200"
+            className="-m-2 max-w-[70vw] truncate p-2 text-xs text-neutral-500 hover:text-neutral-800 dark:hover:text-neutral-200"
           >
             Esci ({user.email})
           </button>
@@ -38,7 +38,7 @@ export default function NavTabs() {
             <Link
               key={item.href}
               href={item.href}
-              className={`whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-medium transition-colors ${
+              className={`whitespace-nowrap rounded-full px-3.5 py-2.5 text-sm font-medium transition-colors ${
                 active
                   ? "bg-neutral-900 text-white dark:bg-white dark:text-neutral-900"
                   : "text-neutral-600 hover:bg-neutral-100 dark:text-neutral-400 dark:hover:bg-neutral-800"

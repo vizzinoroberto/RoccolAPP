@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import {
   addDoc,
   collection,
@@ -55,6 +55,13 @@ export default function Calendar() {
   const [selectedDay, setSelectedDay] = useState<string | null>(null);
   const [newTitle, setNewTitle] = useState("");
   const [newTime, setNewTime] = useState("");
+  const detailRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (selectedDay) {
+      detailRef.current?.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    }
+  }, [selectedDay]);
 
   const year = cursor.getFullYear();
   const month = cursor.getMonth();
@@ -117,7 +124,8 @@ export default function Calendar() {
       <div className="mb-4 flex items-center justify-between">
         <button
           onClick={() => setCursor(new Date(year, month - 1, 1))}
-          className="rounded-full px-3 py-1.5 text-sm hover:bg-neutral-100 dark:hover:bg-neutral-800"
+          aria-label="Mese precedente"
+          className="rounded-full p-3 text-base hover:bg-neutral-100 dark:hover:bg-neutral-800"
         >
           ←
         </button>
@@ -126,7 +134,8 @@ export default function Calendar() {
         </h1>
         <button
           onClick={() => setCursor(new Date(year, month + 1, 1))}
-          className="rounded-full px-3 py-1.5 text-sm hover:bg-neutral-100 dark:hover:bg-neutral-800"
+          aria-label="Mese successivo"
+          className="rounded-full p-3 text-base hover:bg-neutral-100 dark:hover:bg-neutral-800"
         >
           →
         </button>
@@ -188,7 +197,10 @@ export default function Calendar() {
       </div>
 
       {selectedDay && (
-        <div className="mt-4 rounded-xl border border-neutral-200 p-4 dark:border-neutral-800">
+        <div
+          ref={detailRef}
+          className="mt-4 scroll-mt-4 rounded-xl border border-neutral-200 p-4 dark:border-neutral-800"
+        >
           <h2 className="mb-2 text-sm font-semibold">
             {new Date(selectedDay + "T00:00:00").toLocaleDateString("it-IT", {
               weekday: "long",
@@ -197,14 +209,14 @@ export default function Calendar() {
             })}
           </h2>
 
-          <ul className="mb-3 flex flex-col gap-1">
+          <ul className="mb-3 flex flex-col gap-1.5">
             {selectedEvents.length === 0 && (
               <li className="text-sm text-neutral-400">Nessun evento</li>
             )}
             {selectedEvents.map((ev) => (
               <li
                 key={ev.id}
-                className="flex items-center justify-between rounded-lg bg-neutral-100 px-3 py-1.5 text-sm dark:bg-neutral-900"
+                className="flex items-center justify-between rounded-lg bg-neutral-100 py-1 pl-3 pr-1 text-sm dark:bg-neutral-900"
               >
                 <span>
                   {ev.time && <span className="mr-2 text-neutral-500">{ev.time}</span>}
@@ -212,7 +224,7 @@ export default function Calendar() {
                 </span>
                 <button
                   onClick={() => removeEvent(ev.id)}
-                  className="text-neutral-400 hover:text-red-500"
+                  className="shrink-0 p-3 text-neutral-400 hover:text-red-500"
                   aria-label="Elimina evento"
                 >
                   ✕
@@ -227,17 +239,18 @@ export default function Calendar() {
               onChange={(e) => setNewTitle(e.target.value)}
               onKeyDown={(e) => e.key === "Enter" && addEvent()}
               placeholder="Nuovo evento..."
-              className="min-w-40 flex-1 rounded-lg border border-neutral-200 px-3 py-1.5 text-sm dark:border-neutral-800 dark:bg-neutral-900"
+              enterKeyHint="done"
+              className="min-w-40 flex-1 rounded-lg border border-neutral-200 px-3 py-3 text-sm dark:border-neutral-800 dark:bg-neutral-900"
             />
             <input
               value={newTime}
               onChange={(e) => setNewTime(e.target.value)}
               type="time"
-              className="rounded-lg border border-neutral-200 px-3 py-1.5 text-sm dark:border-neutral-800 dark:bg-neutral-900"
+              className="rounded-lg border border-neutral-200 px-3 py-3 text-sm dark:border-neutral-800 dark:bg-neutral-900"
             />
             <button
               onClick={addEvent}
-              className="rounded-lg bg-neutral-900 px-4 py-1.5 text-sm font-medium text-white dark:bg-white dark:text-neutral-900"
+              className="w-full rounded-lg bg-neutral-900 px-4 py-3 text-sm font-medium text-white dark:bg-white dark:text-neutral-900 sm:w-auto"
             >
               Aggiungi
             </button>
