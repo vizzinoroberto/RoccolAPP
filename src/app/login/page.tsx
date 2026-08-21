@@ -10,6 +10,7 @@ export default function LoginPage() {
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [remember, setRemember] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
 
@@ -22,7 +23,7 @@ export default function LoginPage() {
     setError(null);
     setLoading(true);
     try {
-      await login(email, password);
+      await login(email, password, remember);
       router.replace("/");
     } catch {
       setError("Email o password non corretti.");
@@ -74,6 +75,16 @@ export default function LoginPage() {
             autoComplete="current-password"
             className="mt-1 w-full rounded-lg border border-neutral-200 px-3 py-3 text-sm dark:border-neutral-800 dark:bg-neutral-900"
           />
+        </label>
+
+        <label className="mb-4 flex cursor-pointer items-center gap-2 text-sm">
+          <input
+            type="checkbox"
+            checked={remember}
+            onChange={(e) => setRemember(e.target.checked)}
+            className="h-5 w-5 accent-neutral-900 dark:accent-white"
+          />
+          Ricordami
         </label>
 
         {error && <p className="mb-3 text-sm text-red-500">{error}</p>}
